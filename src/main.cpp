@@ -5,11 +5,12 @@ using namespace std;
 void menu();
 
 int main() {
-    
+
+    menu();
 }
 
 void menu() {
-    cout << "Welcome to [COMPANY] Login." << endl;
+    cout << "Welcome to [COMPANY] Login." << endl ;
     cout << "---------------------------" << endl;
     cout << "Select an option:" << endl;
     cout << "1. Create Account" << endl;
