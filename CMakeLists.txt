@@ -3,4 +3,6 @@ project(simple-login)
 
 ADD_EXECUTABLE(login
     src/main.cpp
+    src/User.cpp 
+    header/User.hpp
     )
