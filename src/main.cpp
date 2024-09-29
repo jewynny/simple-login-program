@@ -14,61 +14,103 @@ int main() {
 
     menu();
     cin >> choice;
-    while (choice < 1 || choice >3) { //input validation here for now
+    while (choice < '1' || choice > '3') { //input validation here for now
         cout << "Input is not valid, please enter a choice between 1-3: ";
         cin >> choice;
     }
+    while (choice != '3') {
+        switch(choice) {
+            case '1': {
+                User User;
+                string username;
+                string password;
+                string passCheck;
+                bool validPassword = false;
 
-    switch(choice) {
-        case 1:
-            //variables
-            User User;
-            string username;
-            string password;
-            string passCheck;
-            bool validPassword = false;
+                cout << "You have chosen to create an account." << endl;
+                cout << "Create your username: ";
+                cin >> username;
 
-            cout << "You have chosen to create an account." << endl;
-            cout << "Create your username: ";
-            cin >> username;
+                // username validation will be done here
 
-            // username validation will be done here
-
-            cout << "Create your password: ";
-            cin >> password;
-            cout << "Enter password again: ";
-            cin >> passCheck;
-            
-            while (validPassword != true) {
-                // Checks if lengths are equal
-                if (password.length() != passCheck.length())
-                    validPassword = false;
-                else    
-                    validPassword = true;
-
-                // after lengths are checked, individual characters are checked
-                for(int i = 0; i < password.length(); i++){
-                    if (password[i] != passCheck[i])
-                        validPassword = false;
-                }
-
-                cout << "Second password does not match the first, try again." << endl;
                 cout << "Create your password: ";
                 cin >> password;
                 cout << "Enter password again: ";
                 cin >> passCheck;
+
+                //checks if passwords are valid
+                if (password == passCheck)
+                        validPassword = true;
+                    else
+                        validPassword = false;
+
+                // password is not valid, enter validation
+                while (validPassword != true) {
+                    cout << "Second password does not match the first, try again." << endl;
+                    cout << "Create your password: ";
+                    cin >> password;
+                    cout << "Enter password again: ";
+                    cin >> passCheck;
+
+                    if (password == passCheck)
+                        validPassword = true;
+                    else
+                        validPassword = false;
+                }
+
+                User.setUserUsername(username);
+                User.setUserPassword(password);
+
+                userList.push_back(User);
+                break;
             }
+            case '2': {
 
-            User.setUserUsername(username);
-            User.setUserPassword(password);
+                string username;
+                string password;
+                bool userExists = false;
+                int userPos;
 
-            userList.push_back(User);
-            break;
-        case 2:
-            cout << "hey mamas" << endl;
-            break;
-        default:
-            cout << "Exiting login." << endl;
+                cout << "To login, enter username: ";
+                cin >> username;
+
+                //check if that username exists
+                for (int i = 0; i < static_cast<int>(userList.size()); i++) {
+                    if (userList.at(i).getUserUsername() == username) {
+                        userExists = true;
+                        userPos = i;
+                    }
+                    else
+                        userExists = false;
+                }
+
+                if (userExists != true) {
+                    cout << "Sorry, the username you have provided does not exist!" << endl;
+                    cout << "You are not able to log in at this time." << endl;
+                }
+                else {
+                    cout << "Enter password: ";
+                    cin >> password;
+                    if (userList.at(userPos).getUserPassword() != password)
+                        cout << "Incorrect password, you are not able to log in at this time." << endl;
+                    else  
+                        cout << "Correct password, you are now logged in." << endl;
+                }
+
+                break;
+            }
+            default: {
+                cout << "Exiting login." << endl;
+                break;
+            }
+        }
+        // Call menu again to see if user would still like to use the program
+        menu();
+        cin >> choice;
+        while (choice < '1' || choice > '3') { //input validation here for now
+            cout << "Input is not valid, please enter a choice between 1-3: ";
+            cin >> choice;
+        }
     }
 }
 
