@@ -30,6 +30,10 @@ int main() {
                 User User;
                 string username;
 
+                string birthMonth;
+                string birthDate;
+                string birthYear;
+
                 // create username
                 cout << "You have chosen to create an account." << endl;
                 cout << "---------------------------" << endl;
@@ -41,8 +45,37 @@ int main() {
                 // create password
                 password = createPassword();
 
+                //add DOB
+                cout << "Enter your date of birth:" << endl;
+                cout << "---------------------------" << endl;
+                cout << "Enter your birth month using 1-12: "
+                cin.ignore();
+                getline(cin, birthmonth);
+                while (birthMonth < "1" || birthMonth > "12") { //input validation here for now
+                    cout << "Input is not valid, please enter a choice between 1-12: ";
+                    getline(cin, birthMonth);
+                }
+
+                cout << "Enter your birth date using 1-31: ";
+                getline(cin, birthDate);
+                while (birthDate < '1' || birthDate > '31') { //input validation here for now
+                    cout << "Input is not valid, please enter a choice between 1-12: ";
+                    getline(cin, birthDate);
+                }
+
+                cout << "Enter your birth year using a four digit number: ";
+                getline(cin, birthYear);
+                while (birthYear < '1000' || birthYear > '3000') { //input validation here for now
+                    cout << "Input is not valid, please enter a choice between 1-12: ";
+                    getline(cin, birthYear);
+                }
+
+
                 User.setUserUsername(username);
                 User.setUserPassword(password);
+                User.setuserBirthDate(birthDate);
+                User.setuserBirthMonth(birthMonth);
+                User.setuserBirthYear(birthYear);
 
                 userList.push_back(User);
                 break;
