@@ -11,6 +11,7 @@ void menu();
 char choiceValidation(char choice);
 string createPassword();
 bool validPassword(string password, string passcheck);
+string encrypt(string password);
 
 int main() {
 
@@ -29,6 +30,7 @@ int main() {
                 //temp variables
                 User User;
                 string username;
+                string encryptedPassword;
 
                 string birthMonth;
                 string birthDate;
@@ -44,6 +46,7 @@ int main() {
 
                 // create password
                 password = createPassword();
+                encryptedPassword = encrypt(password);
 
                 //add DOB
                 cout << "Enter your date of birth:" << endl;
@@ -72,7 +75,7 @@ int main() {
 
 
                 User.setUserUsername(username);
-                User.setUserPassword(password);
+                User.setUserPassword(encryptedPassword);
                 User.setuserBirthDate(birthDate);
                 User.setuserBirthMonth(birthMonth);
                 User.setuserBirthYear(birthYear);
@@ -180,4 +183,24 @@ string createPassword() {
     cout << "You have created a valid password." << endl;
     
     return password;
+}
+
+string encrypt(string password) {
+    //intialize empty string
+    string encryptedPass(password.size(), ' ');
+
+    for (int i = 0; i < password.size(); ++i) {
+        if (isalpha(password[i]))
+        {
+        	// if letter is capital, base used for shifting is A likewise for lowercase
+            char base = islower(password[i]) ? 'a' : 'A'; 
+            // shift and wrap with alphabet for simple caeser cipher :)
+            encryptedPass[i] = (password[i] - base + shift) % 26 + base;
+        } 
+        else
+        {
+        	// skipping over special characters, only encrypting the alphabet
+            encryptedPass[i] = password[i];
+        }
+    }
 }
