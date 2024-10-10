@@ -7,13 +7,13 @@ string User::getUserUsername() {
 string User::getUserPassword() {
     return password;}
 
-int User::getuserBirthDate() {
+string User::getUserBirthDate() {
     return birthDate;}
 
-int User::getUserBirthYear() {
+string User::getUserBirthYear() {
     return birthYear;}
 
-Month User::getUserBirthMonth() {
+string User::getUserBirthMonth() {
     return birthMonth;}
 
 
@@ -24,11 +24,11 @@ void User::setUserUsername(string username) {
 void User::setUserPassword(string password) {
     this->password = password;}
 
-void User::setuserBirthDate(int birthDate) {
+void User::setUserBirthDate(string birthDate) {
     this->birthDate = birthDate;}
 
-void User::setUserBirthYear(int birthYear) {
+void User::setUserBirthYear(string birthYear) {
     this->birthYear = birthYear;}
 
-void User::setUserBirthMonth(Month birthMonth) {
+void User::setUserBirthMonth(string birthMonth) {
     this->birthMonth = birthMonth;}

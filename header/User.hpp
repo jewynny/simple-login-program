@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum Month{NULL, JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER};
+enum Month{ JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER};
 
 class User {
     public: 
@@ -13,15 +13,15 @@ class User {
 
     string getUserUsername();
     string getUserPassword();
-    int getuserBirthDate();
-    int getUserBirthYear();
-    Month getUserBirthMonth();
+    string getUserBirthDate();
+    string getUserBirthYear();
+    string getUserBirthMonth();
 
     void setUserUsername(string username);
     void setUserPassword(string password);
-    void setuserBirthDate(int birthDate);
-    void setUserBirthYear(int birthYear);
-    void setUserBirthMonth(Month birthMonth);
+    void setUserBirthDate(string birthDate);
+    void setUserBirthYear(string birthYear);
+    void setUserBirthMonth(string birthMonth);
     
     private:
     char userChoice;
@@ -29,9 +29,9 @@ class User {
 
     // for if there are age rstrictions
     string password; // not encrypted
-    Month birthMonth;
-    int birthDate;
-    int birthYear;
+    string birthMonth;
+    string birthDate;
+    string birthYear;
 
 
 };
